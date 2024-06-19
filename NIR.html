@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Satisfação NIR</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@400;500&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(to right, rgb(219, 152, 8), rgb(126, 219, 157));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-family: 'Merriweather', serif;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-family: 'Merriweather', serif;
+        }
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-family: 'Merriweather', serif;
+        }
+        .image-rating {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .image-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 50%;
+            position: relative;
+        }
+        .image-option img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        .image-option.selected span {
+            position: relative;
+        }
+        .image-option.selected span::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid green;
+            border-radius: 50%;
+        }
+        .image-option:hover {
+            transform: scale(1.1);
+        }
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #158bda;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .submit-button:hover {
+            background-color: #3e5c3f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">FORMULÁRIO DE SATISFAÇÃO NIR</div>
+        
+        <form id="satisfaction-form">
+            <div class="input-group">
+                <label for="entrevistado">NOME DO PACIENTE:</label>
+                <input type="text" id="entrevistado" name="entrevistado" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="entrevistador">NOME DO ENTREVISTADOR:</label>
+                <input type="text" id="entrevistador" name="entrevistador" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Qual seu nível de satisfação em relação ao atendimento na recepção?</label>
+                <div class="image-rating" id="image-rating-recepcao">
+                    <div class="image-option" onclick="setImageSatisfaction('recepcao', 'Muito Insatisfeito', this)">
+                        <img src="img/MuitoInstisfeito.png" alt="Muito Insatisfeito">
+                        <span>Muito Insatisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('recepcao', 'Pouco Insatisfeito', this)">
+                        <img src="img/PoucoInsatisfeito.png" alt="Pouco Insatisfeito">
+                        <span>Pouco Insatisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('recepcao', 'Pouco Satisfeito', this)">
+                        <img src="img/PoucoSatisfeito.png" alt="Pouco Satisfeito">
+                        <span>Pouco Satisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('recepcao', 'Muito Satisfeito', this)">
+                        <img src="img/MuitoSatisfeito.png" alt="Muito Satisfeito">
+                        <span>Muito Satisfeito</span>
+                    </div>
+                </div>
+                <input type="hidden" id="recepcao" name="recepcao">
+            </div>
+            <br>
+            <div class="form-group">
+                <label>Qual seu nível de satisfação em relação ao quarto que permaneceu internado?</label>
+                <div class="image-rating" id="image-rating-quarto">
+                    <div class="image-option" onclick="setImageSatisfaction('quarto', 'Muito Insatisfeito', this)">
+                        <img src="img/MuitoInstisfeito.png" alt="Muito Insatisfeito">
+                        <span>Muito Insatisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('quarto', 'Pouco Insatisfeito', this)">
+                        <img src="img/PoucoInsatisfeito.png" alt="Pouco Insatisfeito">
+                        <span>Pouco Insatisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('quarto', 'Pouco Satisfeito', this)">
+                        <img src="img/PoucoSatisfeito.png" alt="Pouco Satisfeito">
+                        <span>Pouco Satisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('quarto', 'Muito Satisfeito', this)">
+                        <img src="img/MuitoSatisfeito.png" alt="Muito Satisfeito">
+                        <span>Muito Satisfeito</span>
+                    </div>
+                </div>
+                <input type="hidden" id="quarto" name="quarto">
+            </div>
+            <br>
+            <div class="form-group">
+                <label>Qual seu nível de satisfação geral?</label>
+                <div class="image-rating" id="image-rating-geral">
+                    <div class="image-option" onclick="setImageSatisfaction('geral', 'Muito Insatisfeito', this)">
+                        <img src="img/MuitoInstisfeito.png" alt="Muito Insatisfeito">
+                        <span>Muito Insatisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('geral', 'Pouco Insatisfeito', this)">
+                        <img src="img/PoucoInsatisfeito.png" alt="Pouco Insatisfeito">
+                        <span>Pouco Insatisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('geral', 'Pouco Satisfeito', this)">
+                        <img src="img/PoucoSatisfeito.png" alt="Pouco Satisfeito">
+                        <span>Pouco Satisfeito</span>
+                    </div>
+                    <div class="image-option" onclick="setImageSatisfaction('geral', 'Muito Satisfeito', this)">
+                        <img src="img/MuitoSatisfeito.png" alt="Muito Satisfeito">
+                        <span>Muito Satisfeito</span>
+                    </div>
+                </div>
+                <input type="hidden" id="geral" name="geral">
+            </div>
+            
+            <div class="input-group">
+                <label for="observacoes">Observações:</label>
+                <input type="text" id="observacoes" name="observacoes">                
+            </div>
+
+            <button class="submit-button" type="submit">ENVIAR</button>
+        </form>
+    </div>
+
+    <script>
+        function setImageSatisfaction(field, value, element) {
+            document.getElementById(field).value = value;
+            
+            var options = element.parentNode.getElementsByClassName('image-option');
+            for (var i = 0; i < options.length; i++) {
+                options[i].classList.remove('selected');
+            }
+            element.classList.add('selected');
+        }
+
+        document.getElementById('satisfaction-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var formData = new FormData(this);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbxF3aLmx4NuSR9N07sjuZqRgx-ZFXuv248H4YmK-309sq65Wc0UoAnbISzCWJ5OEbpc/exec', true);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            alert('Dados salvos com sucesso!');
+            document.getElementById('satisfaction-form').reset();
+        }
+    };
+    xhr.send(formData);
+});
+
+    </script>
+</body>
+</html>
